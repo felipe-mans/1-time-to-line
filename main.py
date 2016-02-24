@@ -1,42 +1,41 @@
 from display import *
 from draw import *
 
+import math
+import random
+
+x = 0
+y = 0
+
 screen = new_screen()
 color = [ 0, 255, 0 ]
 
-#octant I
-draw_line( screen, 0, 0, XRES - 1, YRES - 75, color )
-#octant II
-draw_line( screen, 0, 0, XRES - 75, YRES - 1, color )
-#octant VIII
-draw_line( screen, 0, YRES - 1, XRES - 1, 75, color )
-#octant VII
-draw_line( screen, 0, YRES - 1, XRES - 75, 0, color )
-
-
-color[ GREEN ] = 0
-color[ RED ] = MAX_COLOR
-#octant V
-draw_line( screen, XRES - 1, YRES - 1, 0, 75, color )
-#octant VI
-draw_line( screen, XRES - 1, YRES - 1, 75, 0, color )
-#octant IV
-draw_line( screen, XRES - 1, 0, 0, YRES - 75, color )
-#octant III
-draw_line( screen, XRES - 1, 0, 75, YRES - 1, color )
-
-
 color[ BLUE ] = MAX_COLOR
 color[ RED ] = 0
-#y = x
-draw_line( screen, 0, 0, XRES - 1, YRES - 1, color )
-#y = -x
-draw_line( screen, 0, YRES - 1, XRES - 1, 0, color )
 
-color[ GREEN ] = MAX_COLOR
-#horizontal
-draw_line( screen, 0, YRES / 2, XRES - 1, YRES / 2, color )
-#vertical
-draw_line( screen, XRES / 2, 0, XRES / 2, YRES - 1, color )
+degree = math.pi / 180
+theta = 0
+
+while ( theta < math.pi/2 ):
+  draw_line(screen, 0, int(YRES * math.cos(theta)), int(XRES * math.sin(theta)), 0, color);
+  theta += degree
+
+color[ BLUE ] = 0
+color[ RED ] = MAX_COLOR
+
+draw_line(screen, XRES - 100, YRES - 100, XRES - 80, YRES - 100, color);
+draw_line(screen, XRES - 100, YRES - 80, XRES - 80, YRES - 80, color);
+draw_line(screen, XRES - 100, YRES - 100, XRES - 100, YRES - 80, color);
+draw_line(screen, XRES - 80, YRES - 100, XRES - 80, YRES - 80, color);
+
+draw_line(screen, XRES - 60, YRES - 100, XRES - 40, YRES - 100, color);
+draw_line(screen, XRES - 60, YRES - 80, XRES - 40, YRES - 80, color);
+draw_line(screen, XRES - 60, YRES - 100, XRES - 60, YRES - 80, color);
+draw_line(screen, XRES - 40, YRES - 100, XRES - 40, YRES - 80, color);
+
+draw_line(screen, XRES - 110, YRES - 50, XRES - 30, YRES - 50, color);
+draw_line(screen, XRES - 110, YRES - 30, XRES - 30, YRES - 30, color);
+draw_line(screen, XRES - 110, YRES - 50, XRES - 110, YRES - 30, color);
+draw_line(screen, XRES - 30, YRES - 50, XRES - 30, YRES - 30, color);
 
 display(screen)
